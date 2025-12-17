@@ -21,23 +21,14 @@
       totalEmployees: { $sum: 1 },
       averageSalary: { $avg: "$salary" }
     }
-  }
-])
-
-7) db.employees.aggregate([
-  {
-    $group: {
-      _id: "$department",
-      totalEmployees: { $sum: 1 },
-      averageSalary: { $avg: "$salary" }
-    }
   },
   {
     $sort: { totalEmployees: -1 }
   }
 ])
 
-8) Final Output
+
+7) Final Output
 [
   { "_id": "CSE", "totalEmployees": 2, "averageSalary": 52500 },
   { "_id": "ECE", "totalEmployees": 2, "averageSalary": 50000 },
