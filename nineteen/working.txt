@@ -1,0 +1,25 @@
+1) use WorkDB
+
+2) db.createCollection("teachers")
+
+3) db.teachers.insertMany([
+  {
+    name: "Ramesh",
+    subject: "Mathematics",
+    experience: 10
+  },
+  {
+    name: "Sita",
+    subject: "Physics",
+    experience: 8
+  },
+  {
+    name: "Anil",
+    subject: "Computer Science",
+    experience: 5
+  }
+])
+
+4) mongoexport --db WorkDB --collection students --out students.json
+
+5) mongoimport --db WorkDB --collection studentsBackup --file students.json
