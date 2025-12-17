@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Information Form</title>
+    <style>
+        /* Basic styling to match the visual layout */
+        .form-container {
+            border: 2px solid black;
+            padding: 20px;
+            width: 400px; /* Adjust width as needed */
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            padding: 5px;
+            vertical-align: middle;
+        }
+        /* Style to ensure inputs have consistent width */
+        input[type="text"], 
+        input[type="email"], 
+        input[type="number"], 
+        input[type="password"], 
+        select, 
+        textarea {
+            width: 180px;
+        }
+        .buttons {
+            margin-top: 15px;
+        }
+        .buttons input {
+            padding: 5px 15px;
+            margin-right: 20px;
+            width: auto; /* Reset width for buttons */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>UserInformationForm</h2>
+        <form>
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="name"></td>
+                </tr>
+
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="email"></td>
+                </tr>
+
+                <tr>
+                    <td>Age</td>
+                    <td><input type="number" name="age"></td>
+                </tr>
+
+                <tr>
+                    <td>Country</td>
+                    <td>
+                        <select name="country">
+                            <option value="India">India</option>
+                            <option value="USA">USA</option>
+                            <option value="UK">UK</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+
+                <tr>
+                    <td>Resume</td>
+                    <td><input type="file" name="resume"></td>
+                </tr>
+
+                <tr>
+                    <td>Hobbies</td>
+                    <td>
+                        <input type="checkbox" name="hobby" value="Cricket"> Cricket
+                        <input type="checkbox" name="hobby" value="Football"> Football
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <input type="radio" name="gender" value="Male"> Male
+                        <input type="radio" name="gender" value="Female"> Female
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>City</td>
+                    <td>
+                        <select name="city">
+                            <option>--Choosecity--</option>
+                            <option>Bangalore</option>
+                            <option>Mumbai</option>
+                            <option>Delhi</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="vertical-align: top;">Address</td>
+                    <td><textarea name="address" rows="3"></textarea></td>
+                </tr>
+            </table>
+
+            <div class="buttons">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
