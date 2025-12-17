@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* This class demonstrates the CSS Box Model 
+           Requirements covered: Padding, Margins, Borders [cite: 54]
+        */
+        .card {
+            background-color: white;
+            width: 300px;
+            
+            /* Border: The line around the content and padding */
+            border: 5px solid #4CAF50; 
+            
+            /* Padding: Space between the content (text/image) and the border */
+            padding: 20px; 
+            
+            /* Margin: Space outside the border, pushing other elements away */
+            margin: 30px; 
+            
+            /* Extra visual styling (Shadows/Radius) for appeal */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: white;
+            background-color: #008CBA;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .card a:hover {
+            background-color: #005f73;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>The Box Model</h2>
+        
+        <img src="https://via.placeholder.com/250x150/4CAF50/FFFFFF?text=Box+Model+Image" alt="Demo Image">
+        
+        <p>
+            This element demonstrates <strong>Padding</strong> (space inside), 
+            <strong>Borders</strong> (the green line), and 
+            <strong>Margins</strong> (space outside).
+        </p>
+
+        <a href="https://www.w3schools.com/css/css_boxmodel.asp" target="_blank">Learn More</a>
+    </div>
+
+</body>
+</html>
