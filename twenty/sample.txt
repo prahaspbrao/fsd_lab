@@ -1,0 +1,45 @@
+1) mongosh
+
+2) use CompanyDB
+
+3) db.createCollection("employees")
+
+4) db.employees.insertMany([
+  { empId: 101, name: "Rahul", department: "CSE", salary: 50000 },
+  { empId: 102, name: "Anita", department: "CSE", salary: 55000 },
+  { empId: 103, name: "Kiran", department: "ECE", salary: 48000 },
+  { empId: 104, name: "Meena", department: "ECE", salary: 52000 },
+  { empId: 105, name: "Ravi", department: "ME", salary: 45000 }
+])
+
+4) db.employees.find().pretty()
+
+6) db.employees.aggregate([
+  {
+    $group: {
+      _id: "$department",
+      totalEmployees: { $sum: 1 },
+      averageSalary: { $avg: "$salary" }
+    }
+  }
+])
+
+7) db.employees.aggregate([
+  {
+    $group: {
+      _id: "$department",
+      totalEmployees: { $sum: 1 },
+      averageSalary: { $avg: "$salary" }
+    }
+  },
+  {
+    $sort: { totalEmployees: -1 }
+  }
+])
+
+8) Final Output
+[
+  { "_id": "CSE", "totalEmployees": 2, "averageSalary": 52500 },
+  { "_id": "ECE", "totalEmployees": 2, "averageSalary": 50000 },
+  { "_id": "ME", "totalEmployees": 1, "averageSalary": 45000 }
+]
