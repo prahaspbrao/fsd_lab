@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Lab Program</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .control-panel {
+            background-color: #f0f0f0;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            border-bottom: 2px solid #333;
+        }
+        button {
+            padding: 8px 15px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        /* Style for the ID element */
+        #myElement {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: lightgray;
+        }
+        /* Style for the Class element */
+        .special-box {
+            color: purple;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="control-panel">
+        <h3>Control Panel (Click these to run tasks)</h3>
+        <button onclick="changeBgColor()">Task A: Change BG (ID)</button>
+        <button onclick="changeListColor()">Task B: Blue List Items</button>
+        <button onclick="increaseFontSize()">Task D: Increase Font Size</button>
+        <button onclick="changeClassText()">Task E: Change Class Text</button>
+    </div>
+
+    <h1>Program 7: DOM Manipulation</h1>
+
+    <div class="section">
+        <h3>a) Change Background by ID</h3>
+        <div id="myElement">I am #myElement</div>
+    </div>
+
+    <div class="section">
+        <h3>b) List Items</h3>
+        <ul>
+            <li>List Item 1</li>
+            <li>List Item 2</li>
+            <li>List Item 3</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>c) Buttons (Click these to see text change)</h3>
+        <button class="click-btn">Button 1</button>
+        <button class="click-btn">Button 2</button>
+        <button class="click-btn">Button 3</button>
+    </div>
+
+    <div class="section">
+        <h3>d) Paragraphs</h3>
+        <p>This is the first paragraph. Watch my font size grow.</p>
+        <p>This is the second paragraph. I will also grow.</p>
+    </div>
+
+    <div class="section">
+        <h3>e) Select First Element by Class</h3>
+        <div class="special-box">First Element with class "special-box"</div>
+        <br>
+        <div class="special-box">Second Element with class "special-box" (Unchanged)</div>
+    </div>
+
+    <script>
+        // a) Change the background color of an element by its id
+        function changeBgColor() {
+            const element = document.getElementById("myElement");
+            element.style.backgroundColor = "yellow";
+        }
+
+        // b) Change the text color of all list items (<li>) to blue
+        function changeListColor() {
+            const listItems = document.querySelectorAll("li");
+            // Use forEach to loop through all matching elements
+            listItems.forEach(function(item) {
+                item.style.color = "blue";
+            });
+        }
+
+        // c) Change the text of all buttons to "Clicked!" when clicked
+        // We attach this listener to the specific demo buttons for Task C
+        const clickButtons = document.querySelectorAll(".click-btn");
+        clickButtons.forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                this.innerText = "Clicked!";
+            });
+        });
+
+        // d) Increase the font size of all paragraphs
+        function increaseFontSize() {
+            const paragraphs = document.querySelectorAll("p");
+            paragraphs.forEach(function(p) {
+                p.style.fontSize = "24px";
+            });
+        }
+
+        // e) Select the first element with a specific class and change its text
+        function changeClassText() {
+            // querySelector selects ONLY the first matching element
+            const firstElement = document.querySelector(".special-box");
+            firstElement.innerText = "Text Changed by JavaScript!";
+        }
+    </script>
+</body>
+</html>
