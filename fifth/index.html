@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f0f0f0;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Number Guessing Game</h1>
+    <p>Click the button below to start the game.</p>
+    
+    <button onclick="startGame()">Start Game</button>
+    
+    <h2 id="message"></h2>
+
+    <script>
+        function startGame() {
+            // Requirement 1: Generate a random number between 1 and 100
+            // Math.random() gives 0 to 0.999... -> * 100 gives 0 to 99.9... -> floor gives 0-99 -> +1 gives 1-100
+            let targetNumber = Math.floor(Math.random() * 100) + 1;
+            let guess = null;
+            let attempts = 0;
+            let playAgain = false;
+
+            // Requirement 4: Allow the user to keep guessing until they get it right
+            while (guess != targetNumber) {
+                
+                // Requirement 2: Prompt the user to guess the number
+                let input = prompt("Guess a number between 1 and 100:");
+
+                // Safety check: If user clicks "Cancel" in the prompt, exit the loop
+                if (input === null) {
+                    alert("Game Cancelled.");
+                    return; 
+                }
+
+                guess = Number(input);
+                attempts++;
+
+                // Requirement 3: Provide feedback (Too high, Too low, Correct)
+                if (isNaN(guess)) {
+                    alert("Please enter a valid number.");
+                } else if (guess < targetNumber) {
+                    alert("Too low! Try again.");
+                } else if (guess > targetNumber) {
+                    alert("Too high! Try again.");
+                } else {
+                    // Correct Guess Logic
+                    alert(`Correct! You guessed it in ${attempts} attempts.`);
+
+                    // Requirement 5 & 6: Ask to play again using confirm()
+                    // If true (OK), restart the game. If false (Cancel), end program.
+                    playAgain = confirm("Do you want to play again?");
+                    
+                    if (playAgain) {
+                        startGame(); // Recursively restart the game
+                    } else {
+                        // Requirement 7: Display "Thanks for playing!" and end
+                        document.getElementById("message").innerText = "Thanks for playing!";
+                    }
+                    return; // Exit the current function execution
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
