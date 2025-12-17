@@ -28,11 +28,8 @@ const studentsWithCGPA = students.map(student => {
 const highAchievers = studentsWithCGPA.filter(student => student.cgpa >= 9);
 
 // 4. Get total count of students with CGPA >= 9 using reduce()
-const countHighAchievers = studentsWithCGPA.reduce((count, student) => {
-    if (student.cgpa >= 9) {
-        return count + 1;
-    }
-    return count;
+const countHighAchievers = highAchievers.reduce((count, student) => {
+    return count + 1;
 }, 0);
 
 // --- DISPLAY OUTPUT (Text Format) ---
