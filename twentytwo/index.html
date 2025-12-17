@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 20px;
+    }
+
+    form {
+      width: 400px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 48%;
+    }
+
+    .card {
+      width: 400px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="regForm" onsubmit="return validateForm()">
+
+  <!-- Username -->
+  <label>Username</label>
+  <input type="text" id="username">
+  <span class="error" id="userErr"></span>
+
+  <!-- Email -->
+  <label>Email</label>
+  <input type="text" id="email">
+  <span class="error" id="emailErr"></span>
+
+  <!-- Mobile -->
+  <label>Mobile Number</label>
+  <input type="text" id="mobile">
+  <span class="error" id="mobileErr"></span>
+
+  <!-- Password -->
+  <label>Password</label>
+  <input type="password" id="password">
+  <span class="error" id="passErr"></span>
+
+  <!-- Confirm Password -->
+  <label>Confirm Password</label>
+  <input type="password" id="confirmPassword">
+  <span class="error" id="confirmErr"></span>
+
+  <!-- Branch -->
+  <label>Branch</label>
+  <select id="branch">
+    <option value="">Select Branch</option>
+    <option>CSE</option>
+    <option>ISE</option>
+    <option>ECE</option>
+    <option>EEE</option>
+  </select>
+  <span class="error" id="branchErr"></span>
+
+  <!-- Profile Picture -->
+  <label>Upload Profile Picture</label>
+  <input type="file" id="photo" accept="image/*">
+  <span class="error" id="photoErr"></span>
+
+  <!-- Buttons -->
+  <button type="submit">Register</button>
+  <button type="reset">Reset</button>
+
+</form>
+
+<!-- User Card -->
+<div class="card" id="userCard">
+  <h3>User Details</h3>
+  <img id="cardImg">
+  <p><strong>Username:</strong> <span id="cardUser"></span></p>
+  <p><strong>Email:</strong> <span id="cardEmail"></span></p>
+  <p><strong>Mobile:</strong> <span id="cardMobile"></span></p>
+  <p><strong>Branch:</strong> <span id="cardBranch"></span></p>
+</div>
+
+<script>
+  function validateForm() {
+    // get values
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const mobile = document.getElementById("mobile").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const branch = document.getElementById("branch").value;
+    const photo = document.getElementById("photo").files[0];
+
+    let valid = true;
+
+    // clear errors
+    document.querySelectorAll(".error").forEach(e => e.textContent = "");
+
+    // Username validation
+    if (username.length < 6) {
+      document.getElementById("userErr").textContent =
+        "Username must be at least 6 characters";
+      valid = false;
+    }
+
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      document.getElementById("emailErr").textContent =
+        "Invalid email format";
+      valid = false;
+    }
+
+    // Mobile validation
+    if (!/^\d{10}$/.test(mobile)) {
+      document.getElementById("mobileErr").textContent =
+        "Mobile must be exactly 10 digits";
+      valid = false;
+    }
+
+    // Password validation
+    if (!/(?=.*[A-Za-z])(?=.*\d)/.test(password)) {
+      document.getElementById("passErr").textContent =
+        "Password must contain letters and numbers";
+      valid = false;
+    }
+
+    // Confirm password
+    if (password !== confirmPassword) {
+      document.getElementById("confirmErr").textContent =
+        "Passwords do not match";
+      valid = false;
+    }
+
+    // Branch validation
+    if (branch === "") {
+      document.getElementById("branchErr").textContent =
+        "Please select a branch";
+      valid = false;
+    }
+
+    // Photo validation
+    if (!photo) {
+      document.getElementById("photoErr").textContent =
+        "Please upload a profile picture";
+      valid = false;
+    }
+
+    // If valid, display card
+    if (valid) {
+      displayCard(username, email, mobile, branch, photo);
+    }
+
+    return false; // prevent form submission
+  }
+
+  function displayCard(username, email, mobile, branch, photo) {
+    document.getElementById("userCard").style.display = "block";
+    document.getElementById("cardUser").textContent = username;
+    document.getElementById("cardEmail").textContent = email;
+    document.getElementById("cardMobile").textContent = mobile;
+    document.getElementById("cardBranch").textContent = branch;
+
+    const reader = new FileReader();
+    reader.onload = function () {
+      document.getElementById("cardImg").src = reader.result;
+    };
+    reader.readAsDataURL(photo);
+  }
+</script>
+
+</body>
+</html>
