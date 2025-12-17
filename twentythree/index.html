@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Event Handling</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .box {
+      width: 200px;
+      height: 100px;
+      background-color: lightblue;
+      text-align: center;
+      line-height: 100px;
+      margin-bottom: 20px;
+      border: 1px solid #000;
+    }
+
+    input {
+      padding: 8px;
+      width: 250px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .message {
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+<h2>JavaScript Event Handling Demo</h2>
+
+<!-- onclick event -->
+<button onclick="handleClick()">Click Me</button>
+<p id="clickMsg"></p>
+
+<!-- onmouseover event -->
+<div class="box" onmouseover="handleMouseOver()">
+  Hover Over Me
+</div>
+<p id="hoverMsg"></p>
+
+<!-- onkeyup event -->
+<label>Type Something:</label>
+<input type="text" onkeyup="handleKeyUp(this.value)">
+<p id="keyMsg"></p>
+
+<!-- onfocus event -->
+<label>Focus Input Field:</label>
+<input type="text" onfocus="handleFocus()">
+<p id="focusMsg"></p>
+
+<script>
+  // onclick handler
+  function handleClick() {
+    document.getElementById("clickMsg").textContent =
+      "Button was clicked!";
+  }
+
+  // onmouseover handler
+  function handleMouseOver() {
+    document.getElementById("hoverMsg").textContent =
+      "Mouse is over the box!";
+  }
+
+  // onkeyup handler
+  function handleKeyUp(value) {
+    document.getElementById("keyMsg").textContent =
+      "You typed: " + value;
+  }
+
+  // onfocus handler
+  function handleFocus() {
+    document.getElementById("focusMsg").textContent =
+      "Input field is focused!";
+  }
+</script>
+
+</body>
+</html>
