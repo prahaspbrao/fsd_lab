@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Event Handling Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f8ff;
+            height: 100vh; /* Ensures body takes full height for the click event */
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        .section {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+        }
+        .message {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        #dynamicText {
+            color: #555;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body onclick="handleBodyClick()">
+
+    <div class="container" onclick="event.stopPropagation()">
+        <h2>Event Handling Demo</h2>
+        <p><em>Note: Clicking outside this white box will trigger the Body Alert.</em></p>
+
+        <div class="section">
+            <h3>2. Button Click</h3>
+            <button id="actionBtn" onclick="handleButtonClick()">Click Me</button>
+            <p id="successMessage" class="message" style="color: green;"></p>
+        </div>
+
+        <div class="section">
+            <h3>3. Dynamic Text</h3>
+            <label>Type something:</label>
+            <input type="text" onkeyup="updateParagraph(this.value)" placeholder="Type here...">
+            <p>You typed: <span id="dynamicText"></span></p>
+        </div>
+
+        <div class="section">
+            <h3>4. Password Strength</h3>
+            <label>Enter Password:</label>
+            <input type="password" id="passInput" oninput="checkPasswordStrength()">
+            <p class="message" id="strengthMessage"></p>
+        </div>
+    </div>
+
+    <script>
+        // --- Requirement 1: Body Click Handler ---
+        // Purpose: Demonstrates the 'click' event at the highest level (document body).
+        function handleBodyClick() {
+            alert("You clicked on the body of the page!");
+        }
+
+        // --- Requirement 2: Button Click Handler ---
+        // Purpose: Demonstrates 'onclick' to change element properties (text) and DOM content.
+        function handleButtonClick() {
+            const btn = document.getElementById('actionBtn');
+            const msg = document.getElementById('successMessage');
+
+            // Change button text
+            btn.innerText = "Clicked!";
+            btn.style.backgroundColor = "#28a745"; // Optional: change color to green
+            
+            // Display success message
+            msg.innerText = "Operation Successful!";
+        }
+
+        // --- Requirement 3: Dynamic Text Handler ---
+        // Purpose: Demonstrates 'onkeyup' which fires every time a key is released.
+        function updateParagraph(text) {
+            document.getElementById('dynamicText').innerText = text;
+        }
+
+        // --- Requirement 4: Password Strength Handler ---
+        // Purpose: Demonstrates 'oninput' (fires immediately upon value change) and conditional logic.
+        function checkPasswordStrength() {
+            const password = document.getElementById('passInput').value;
+            const msgElement = document.getElementById('strengthMessage');
+            const length = password.length;
+
+            if (length === 0) {
+                msgElement.innerText = "";
+            } else if (length < 4) {
+                msgElement.innerText = "Weak";
+                msgElement.style.color = "red";
+            } else if (length < 8) {
+                msgElement.innerText = "Medium";
+                msgElement.style.color = "orange";
+            } else {
+                msgElement.innerText = "Strong";
+                msgElement.style.color = "green";
+            }
+        }
+    </script>
+</body>
+</html>
