@@ -34,7 +34,7 @@ async function exportEmployees() {
     /* Write updated records to file */
     fs.writeFileSync(
       "updated_employees.json",
-      JSON.stringify(updatedEmployees, null, 2)
+      JSON.stringify(updatedEmployees)
     );
 
     /* 5. Display success message */
